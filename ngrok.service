@@ -1,0 +1,16 @@
+[Unit]
+Description=Ngrok service
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=3
+ExecStart=/usr/bin/ngrok tcp 9199
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+IgnoreSIGPIPE=true
+StandardOutput=journal
+
+[Install]
+WantedBy=multi-user.target
